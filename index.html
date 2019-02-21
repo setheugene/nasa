@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NASA Mars Rovers</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</head>
+
+<body class = "mx-auto container row jumbotron">
+<h1 class="text-center col-md-12">Search for photos from the Mars Rovers</h1>
+
+Pick a Rover
+    <input id="rover" class="col-md-12 form-control" type="text" placeholder="Enter curiosity, opportunity, or spirit">
+
+
+Pick a date
+    <input id="date" class="col-md-12 form-control" type="text" placeholder="2016-02-20 format">
+
+
+    <button id="search" type="button" class=" col-md-12 btn btn-secondary">Search for Image</button>
+
+
+
+
+
+
+
+
+
+    <!-- <div class=" col-md-2 dropdown">
+        <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Pick a Rover
+        </a>
+      
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item">Curiosity</a>
+          <a class="dropdown-item">Opportunity</a>
+          <a class="dropdown-item">Spirit</a>
+        </div>
+      </div> -->
+
+
+        
+          <!-- <div class="form-group">
+              <label for="example-date-input" class="col-2 col-form-label">Date</label>
+              <div class="col-10">
+                <input class="form-control" type="date" value="2011-08-19" id="date-input">
+              </div>
+            </div> -->
+    
+<br><br><br>
+  <div  class="mx-auto" id="photo-div"></div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+
+$("#search").click(function(){
+
+  var rover = $("#rover").val();
+  var date = $("#date").val();
+  var queryURL = "https://api.nasa.gov/mars-photos/api/v1/rovers/"+rover+"/photos?earth_date="+date+"&api_key=GpnPTruXBMMJ3rd4U6XTbibfEDk2u6Qyo5KX8NVf";
+  
+console.log(queryURL)
+  console.log(rover)
+  console.log(date)
+
+
+// console.log($( "select#dropdown" ).val());
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+      $("#photo-div").html('<img src="'+response.photos[0].img_src+'">');
+    console.log(response);
+    
+  });
+})
+</script>
+
+</html>
+
