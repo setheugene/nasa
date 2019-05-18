@@ -1,0 +1,24 @@
+body {
+    background-image: url("img/bckgrnd.jpg");
+   background-color: black;
+   font-family: 'Baloo Bhai', cursive;
+}
+
+header {
+    margin: 0 auto;
+    padding: 0;
+}
+
+
+#search {
+    margin-bottom: 40px;
+}
+
+.col-form-label {
+    margin-right: 45px;
+}
+
+#ui-datepicker-div {
+    background-color: lightgrey;
+    border: 1px solid white;
+}

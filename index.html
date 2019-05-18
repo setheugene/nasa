@@ -1,89 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>NASA Mars Rovers</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-</head>
-
-<body class = "mx-auto container row jumbotron">
-<h1 class="text-center col-md-12">Search for photos from the Mars Rovers</h1>
-
-Pick a Rover
-    <input id="rover" class="col-md-12 form-control" type="text" placeholder="Enter curiosity, opportunity, or spirit">
-
-
-Pick a date
-    <input id="date" class="col-md-12 form-control" type="text" placeholder="2016-02-20 format">
-
-
-    <button id="search" type="button" class=" col-md-12 btn btn-secondary">Search for Image</button>
-
-
-
-
-
-
-
-
-
-    <!-- <div class=" col-md-2 dropdown">
-        <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Pick a Rover
-        </a>
-      
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item">Curiosity</a>
-          <a class="dropdown-item">Opportunity</a>
-          <a class="dropdown-item">Spirit</a>
-        </div>
-      </div> -->
-
-
-        
-          <!-- <div class="form-group">
-              <label for="example-date-input" class="col-2 col-form-label">Date</label>
-              <div class="col-10">
-                <input class="form-control" type="date" value="2011-08-19" id="date-input">
-              </div>
-            </div> -->
+  <head>
+    <meta charset="utf-8" />
+    <title>Opportunity Diary</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
     
-<br><br><br>
-  <div  class="mx-auto" id="photo-div"></div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  </head>
 
-</body>
+  <body class=" jumbotron">
+    <header class="container d-inline-flex justify-content-md-center">
+      <img class="p-6" src="img/nasalogo.png" height="150px" alt="nasa logo" />
+      <h1 class="p-5 text-center">Diary of a Lonesome Robot</h1>
+    </header>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <div class=" form-group container d-inline-flex justify-content-md-center">
 
-<script type="text/javascript">
+        <label class=" col-form-label" for="exampleFormControlSelect1"
+        >Select a Rover
+        <select class="form-control" id="rover-select">
+          <option>Select One</option>
+            <option>Curiosity</option>
+          <option>Opportunity</option>
+          <option>Spirit</option>
+        </select></label
+      >
+
+      <label for="example-date-input" class=" col-form-label"
+        >Select a Date
+        <input
+          class="form-control"
+          value="2016-04-15"
+          id="date-input"
+      /></label>
 
 
-$("#search").click(function(){
+    </div>
 
-  var rover = $("#rover").val();
-  var date = $("#date").val();
-  var queryURL = "https://api.nasa.gov/mars-photos/api/v1/rovers/"+rover+"/photos?earth_date="+date+"&api_key=GpnPTruXBMMJ3rd4U6XTbibfEDk2u6Qyo5KX8NVf";
+    <button id="search" type="button" class=" col-md-12 btn btn-secondary">
+      Search Entries
+    </button>
+
+    <br /><br /><br />
+    <div class="mx-auto" id="photo-div"></div>
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script
+  src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+  integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+  crossorigin="anonymous"></script>
+ 
+
+  <script type="text/javascript">
+
   
-console.log(queryURL)
-  console.log(rover)
-  console.log(date)
+var rover = $("#rover-select").val();
 
-
-// console.log($( "select#dropdown" ).val());
-
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function(response) {
-      $("#photo-div").html('<img src="'+response.photos[0].img_src+'">');
-    console.log(response);
+$( "#rover-select" ).change(function() {
+  console.log("date change running")
+  if (rover === "Curiosity") {
+    console.log("curiosity dates");
+    $( "#date-input" ).datepicker({ minDate: new Date(2012,09,01), maxDate: new Date(2016,04,30) });
     
-  });
-})
-</script>
+  }
+  if (rover === "Opportunity") {
+    console.log("opportunity dates");
+    $( "#date-input" ).datepicker({ minDate: new Date(2004,02,01), maxDate: new Date(2018,05,01) });
+  }
+  if (rover === "Spirit") {
+    console.log("spirit dates");
+    $( "#date-input" ).datepicker({ minDate: new Date(2004,02,01), maxDate: new Date(2010,02,20) });
+  }
+});
 
+
+
+    $("#search").click(function() {
+        rover = $("#rover-select").val();
+      var date = $("#date-input").val();
+      var queryURL =
+        "https://api.nasa.gov/mars-photos/api/v1/rovers/" +
+        rover +
+        "/photos?earth_date=" +
+        date +
+        "&api_key=GpnPTruXBMMJ3rd4U6XTbibfEDk2u6Qyo5KX8NVf";
+
+      console.log(queryURL);
+      console.log(date);
+      console.log(rover);
+
+if (rover === "Select One"){
+  alert("Please Select a Rover");
+}
+
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response, error) {
+        if (response) {
+          $("#photo-div").html(
+            '<img src="' + response.photos[0].img_src + '">'
+          );
+          console.log(response);
+        } else {
+          console.log(error);
+        }
+      });
+    });
+  </script>
 </html>
-
